@@ -18,12 +18,14 @@ export const UserDetail = () => {
 		setGrades(grades.data);
 		setStudent(students.data);
 	};
+
 	useEffect(() => {
 		// console.log(student)
-
-		fetchData(id as String);
+		return () => {
+			fetchData(id as String);
+		};
 	}, []);
-	console.log(grades);
+
 	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 max-md:p-2  p-9 gap-5 max-md:flex-col w-full h-full container m-auto overflow-hidden ">
@@ -33,7 +35,7 @@ export const UserDetail = () => {
 				// transition={{ duration: 0.5 }}
 				// whileHover={{ scale: 0.9 }}
 				// whileTap={{ scale: 0.9 }}
-				className="relative shadow-md w-[70%]  bg-black bg-opacity-70 h-fit rounded-2xl">
+				className="relative shadow-md w-[70%] max-sm:w-[79%]  bg-black bg-opacity-70 h-fit rounded-2xl max-sm:mx-auto max-sm:mt-9">
 				<div className="">
 					<img src={student?.avartar} alt="" className=" w-full" />
 					{/* <img src={``} alt="" className=' w-full'/> */}

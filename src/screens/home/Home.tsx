@@ -13,7 +13,9 @@ export const Home = () => {
 		setGrades(students.data);
 	};
 	useEffect(() => {
-		fetchData();
+		return () => {
+			fetchData();
+		};
 	}, []);
 
 	return (

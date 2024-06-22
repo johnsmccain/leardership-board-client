@@ -17,10 +17,11 @@ export const Card = ({ data }: any) => {
 	};
 
 	useEffect(() => {
-		fetchData(data._id);
+		return () => {
+			fetchData(data._id);
+		};
 	}, []);
 	// const AVG =
-	console.log(grade);
 	return (
 		<Link to={`/user/${data._id}`}>
 			<motion.div
