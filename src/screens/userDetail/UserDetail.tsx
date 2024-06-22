@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 import { getById } from "../../api.js";
 import { sumFunc } from "../../utils.js";
@@ -26,11 +27,11 @@ export const UserDetail = () => {
 	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 max-md:p-2  p-9 gap-5 max-md:flex-col w-full h-full container m-auto overflow-hidden ">
-			<motion.div
-				initial={{ opacity: 0, scale: 0.5 }}
-				animate={{ opacity: 1, scale: 1 }}
-				transition={{ duration: 0.5 }}
-				whileHover={{ scale: 0.9 }}
+			<Tilt
+				// initial={{ opacity: 0, scale: 0.5 }}
+				// animate={{ opacity: 1, scale: 1 }}
+				// transition={{ duration: 0.5 }}
+				// whileHover={{ scale: 0.9 }}
 				// whileTap={{ scale: 0.9 }}
 				className="relative shadow-md w-[70%]  bg-black bg-opacity-70 h-fit rounded-2xl">
 				<div className="">
@@ -52,7 +53,7 @@ export const UserDetail = () => {
 						</div>
 					</div>
 				</div>
-			</motion.div>
+			</Tilt>
 
 			<motion.div className="bg-black bg-opacity-10 p-5 rounded-xl h-full overflow-scroll no-scrollbar">
 				<ul className="">
