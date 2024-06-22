@@ -26,9 +26,9 @@ export const Home = () => {
 				<h2 className="text-center">AVG</h2>
 			</div>
 			<div className=" overflow-y-scroll no-scrollbar ">
-				{grades.length
-					? grades.map((data: IGdData) => <Card data={data} key={data._id} />)
-					: [12, 3, 33, 4, 45].map((i: number) => <Spinner key={i} />)}
+				{grades.map((data: IGdData) => (
+					<Card data={data} key={data._id} />
+				))}
 			</div>
 		</div>
 	);
