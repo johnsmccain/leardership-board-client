@@ -25,7 +25,7 @@ export const UserDetail = () => {
 	console.log(grades);
 	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 p-9 gap-5 max-md:flex-col w-full container m-auto overflow-hidden ">
+		<div className="grid grid-cols-1 md:grid-cols-2 max-md:p-2  p-9 gap-5 max-md:flex-col w-full h-full container m-auto overflow-hidden ">
 			<motion.div
 				initial={{ opacity: 0, scale: 0.5 }}
 				animate={{ opacity: 1, scale: 1 }}
