@@ -12,9 +12,7 @@ export const Home = () => {
 		setGrades(students.data);
 	};
 	useEffect(() => {
-		return () => {
 			fetchData();
-		};
 	}, []);
 
 	return (

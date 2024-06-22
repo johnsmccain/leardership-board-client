@@ -17,9 +17,7 @@ export const Card = ({ data }: any) => {
 	};
 
 	useEffect(() => {
-		return () => {
-			fetchData(data._id);
-		};
+		fetchData(data._id);
 	}, []);
 	// const AVG =
 	return (

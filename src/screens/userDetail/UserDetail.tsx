@@ -21,9 +21,7 @@ export const UserDetail = () => {
 
 	useEffect(() => {
 		// console.log(student)
-		return () => {
-			fetchData(id as String);
-		};
+		fetchData(id as String);
 	}, []);
 
 	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
