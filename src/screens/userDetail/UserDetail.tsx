@@ -26,20 +26,24 @@ export const UserDetail = () => {
 
 	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 max-md:p-2  p-9 gap-5 max-md:flex-col w-full h-full container m-auto overflow-hidden ">
+		<div className="grid grid-cols-1 md:grid-cols-2 max-sm:p-5  p-9 gap-5 max-md:flex-col w-full h-full container m-auto overflow-hidden ">
 			<Tilt
 				// initial={{ opacity: 0, scale: 0.5 }}
 				// animate={{ opacity: 1, scale: 1 }}
 				// transition={{ duration: 0.5 }}
 				// whileHover={{ scale: 0.9 }}
 				// whileTap={{ scale: 0.9 }}
-				className="relative shadow-md w-[70%] max-sm:w-[79%]  bg-black bg-opacity-70 h-fit rounded-2xl max-sm:mx-auto max-sm:mt-9">
+				className="relative shadow-md w-[70%] max-sm:p-1 max-sm:m-2 max-sm:w-[90%] bg-black bg-opacity-70 h-full  rounded-2xl  flex items-center  m-auto ">
 				<div className="">
-					<img src={student?.avartar} alt="" className=" w-full" />
+					<img
+						src={student?.avartar}
+						alt=""
+						className="w-full max-sm:w-[100px]"
+					/>
 					{/* <img src={``} alt="" className=' w-full'/> */}
 				</div>
-				<div className=" bottom-0 p-4 rounded-tr-lg rounded-bl-md">
-					<div className="">
+				<div className=" bottom-0 p-4 max-sm:w-full rounded-tr-lg rounded-bl-md ">
+					<div className="max-sm:mb-2">
 						<h2 className="text-lg font-bold">{student?.name}</h2>
 						<p className="">{student?.handle}</p>
 					</div>
