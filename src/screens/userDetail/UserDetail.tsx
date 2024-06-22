@@ -33,9 +33,10 @@ export const UserDetail = () => {
 				// transition={{ duration: 0.5 }}
 				// whileHover={{ scale: 0.9 }}
 				// whileTap={{ scale: 0.9 }}
-				className="relative shadow-md w-[70%] max-sm:p-1 max-sm:m-2 max-sm:w-[90%] bg-black bg-opacity-70 h-full  rounded-2xl  flex items-center  m-auto ">
-				<div className="">
+				className="relative shadow-md w-[70%] max-sm:p-1 max-sm:m-2 max-sm:w-[90%] bg-black bg-opacity-70 h-full  rounded-2xl  max-sm:flex items-center  m-auto ">
+				<div className="p-4 max-sm:w-full">
 					<img
+						loading="lazy"
 						src={student?.avartar}
 						alt=""
 						className="w-full max-sm:w-[100px]"
@@ -44,7 +45,7 @@ export const UserDetail = () => {
 				</div>
 				<div className=" bottom-0 p-4 max-sm:w-full rounded-tr-lg rounded-bl-md ">
 					<div className="max-sm:mb-2">
-						<h2 className="text-lg font-bold">{student?.name}</h2>
+						<h2 className="text-lg font-bold mb-5">{student?.name}</h2>
 						<p className="">{student?.handle}</p>
 					</div>
 					<div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
