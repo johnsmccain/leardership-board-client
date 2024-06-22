@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card } from "../../components/card/Card";
 import { getAll } from "../../api";
 import { IGdData } from "../../interface";
+import { Spinner } from "../../components/Spinner";
 export const Home = () => {
 	const [grades, setGrades] = useState([]);
 	const fetchData = async () => {
@@ -12,7 +13,7 @@ export const Home = () => {
 		setGrades(students.data);
 	};
 	useEffect(() => {
-			fetchData();
+		fetchData();
 	}, []);
 
 	return (
@@ -23,9 +24,9 @@ export const Home = () => {
 				<h2 className="text-center">AVG</h2>
 			</div>
 			<div className=" overflow-y-scroll no-scrollbar ">
-				{grades.map((data: IGdData) => (
-					<Card data={data} key={data._id} />
-				))}
+				{grades.length
+					? grades.map((data: IGdData) => <Card data={data} key={data._id} />)
+					: [...Array(10).keys()].map((i: number) => <Spinner key={i} />)}
 			</div>
 		</div>
 	);
