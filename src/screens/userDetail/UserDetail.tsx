@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import { getById } from "../../api.js";
 import { sumFunc } from "../../utils.js";
 import { IGdData, IStudent } from "../../interface.js";
+import Skeleton from "../../components/Skeleton.js";
 
 export const UserDetail = () => {
 	const { id } = useParams();
@@ -24,7 +26,13 @@ export const UserDetail = () => {
 	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 p-9 gap-5 max-md:flex-col w-full container m-auto overflow-hidden ">
-			<div className="relative shadow-md w-[70%]  bg-black bg-opacity-70 h-fit rounded-2xl">
+			<motion.div
+				initial={{ opacity: 0, scale: 0.5 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ duration: 0.5 }}
+				whileHover={{ scale: 0.9 }}
+				// whileTap={{ scale: 0.9 }}
+				className="relative shadow-md w-[70%]  bg-black bg-opacity-70 h-fit rounded-2xl">
 				<div className="">
 					<img src={student?.avartar} alt="" className=" w-full" />
 					{/* <img src={``} alt="" className=' w-full'/> */}
@@ -44,31 +52,38 @@ export const UserDetail = () => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</motion.div>
 
-			<div className="bg-black bg-opacity-10 p-5 rounded-xl h-screen overflow-scroll no-scrollbar">
+			<motion.div className="bg-black bg-opacity-10 p-5 rounded-xl h-full overflow-scroll no-scrollbar">
 				<ul className="">
-					{grades.map((gdData: IGdData) => {
-						return (
-							<li
-								key={gdData?._id}
-								className="p-2 bg-gray-500 bg-opacity-5 mb-3 rounded-md hover:shadow-lg x">
-								<p className="mb-3">{gdData.assignment.topic}</p>
-								{/* <span className="">{gdData.grade}</span> */}
-								<div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-									<div
-										className={`${
-											gdData?.score > 50 ? "bg-green-400" : "bg-red-400"
-										} text-xs font-medium text-black text-center p-0.5 leading-none rounded-full`}
-										style={{ width: `${gdData?.score}%` }}>
-										{`${gdData?.score}%`}
-									</div>
-								</div>
-							</li>
-						);
-					})}
+					{grades.length
+						? grades.map((gdData: IGdData) => {
+								return (
+									<motion.li
+										initial={{ opacity: 0, scale: 0.5 }}
+										animate={{ opacity: 1, scale: 1 }}
+										transition={{ duration: 0.5 }}
+										// whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.9 }}
+										key={gdData?._id}
+										className="p-2 bg-gray-500 bg-opacity-5 mb-3 rounded-md hover:shadow-lg x">
+										<p className="mb-3">{gdData.assignment.topic}</p>
+										{/* <span className="">{gdData.grade}</span> */}
+										<div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+											<div
+												className={`${
+													gdData?.score > 50 ? "bg-green-400" : "bg-red-400"
+												} text-xs font-medium text-black text-center p-0.5 leading-none rounded-full`}
+												style={{ width: `${gdData?.score}%` }}>
+												{`${gdData?.score}%`}
+											</div>
+										</div>
+									</motion.li>
+								);
+						  })
+						: [12, 3, 33, 4, 45].map((i: number) => <Skeleton key={i} />)}
 				</ul>
-			</div>
+			</motion.div>
 		</div>
 	);
 };

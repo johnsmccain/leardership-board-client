@@ -1,24 +1,35 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { getById } from "../../api.js";
 import { sumFunc } from "../../utils.js";
-import { IGdData } from "../../interface.js";
+// import { IGdData } from "../../interface.js";
 export const Card = ({ data }: any) => {
-	const [grades, setGrades] = useState<IGdData[]>([]);
+	const [grade, setGrade] = useState<number>(0);
 
 	const fetchData = async (studentId: any) => {
 		const grades = await getById("grades/students", studentId);
-		setGrades(grades.data);
+		setGrade(
+			grades?.data?.length > 0
+				? sumFunc(grades?.data) / grades?.data?.length
+				: 0
+		);
 	};
 
 	useEffect(() => {
 		fetchData(data._id);
 	}, []);
-	const AVG = grades.length > 0 ? sumFunc(grades) / grades.length : 0;
-
+	// const AVG =
+	console.log(grade);
 	return (
 		<Link to={`/user/${data._id}`}>
-			<div className="grid grid-cols-2 text-2xl  my-9 bg-opacity-5 bg-white rounded-md gap-5 h-28 overflow-hidden hover:shadow-md items-center pr-5 hover:shadow-slate-800 transition duration-300 ease-in-out">
+			<motion.div
+				initial={{ opacity: 0, scale: 0.5 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ duration: 0.5 }}
+				whileHover={{ scale: 1.1 }}
+				whileTap={{ scale: 0.9 }}
+				className="grid grid-cols-2 text-2xl my-9  bg-opacity-5 bg-white rounded-md gap-5 h-28 overflow-hidden hover:shadow-md items-center pr-5 hover:shadow-slate-800 transition duration-300 ease-in-out">
 				<div className="flex items-center flex-initial w-auto">
 					<img
 						src={`${data.avartar}`}
@@ -37,13 +48,13 @@ export const Card = ({ data }: any) => {
 				<div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
 					<div
 						className={`${
-							AVG > 50 ? "bg-green-400" : "bg-red-400"
+							grade > 50 ? "bg-green-400" : "bg-red-400"
 						} text-xs font-medium text-gray-900 text-center p-0.5 leading-none rounded-full`}
-						style={{ width: `${AVG}%` }}>
-						{`${AVG}%`}
+						style={{ width: `${grade}%` }}>
+						{`${grade}%`}
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</Link>
 	);
 };
