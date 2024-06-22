@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Card } from "../../components/card/Card";
 import { getAll } from "../../api";
 import { IGdData } from "../../interface";
-import { Spinner } from "../../components/Spinner";
 export const Home = () => {
 	const [grades, setGrades] = useState([]);
 	const fetchData = async () => {
